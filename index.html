@@ -4,39 +4,46 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Calculator</title>
-		<!-- <link href="css/style.css" rel="stylesheet" /> -->
+		<link href="style.css" rel="stylesheet" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Noto+Sans+Math&family=Syne:wght@400..800&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
 	<body>
 		<div class="container">
 			<p>Calculator</p>
+			<h3 class="pre-display">012345</h3>
 			<h3 class="display">0123456789</h3>
 			<div class="btns">
 				<div class="row">
-					<button type="button">%</button>
+					<button type="button" class="operator">%</button>
 					<button type="button">7</button>
 					<button type="button">4</button>
 					<button type="button">1</button>
-					<button type="button">AC</button>
+					<button type="button" class="allClear">AC</button>
 				</div>
 				<div class="row">
-					<button type="button">÷</button>
+					<button type="button" class="operator">÷</button>
 					<button type="button">8</button>
 					<button type="button">5</button>
 					<button type="button">2</button>
 					<button type="button">0</button>
 				</div>
 				<div class="row">
-					<button type="button">x</button>
+					<button type="button" class="operator">x</button>
 					<button type="button">9</button>
 					<button type="button">6</button>
 					<button type="button">3</button>
 					<button type="button">.</button>
 				</div>
 				<div class="row">
-					<button type="button">←</button>
-					<button type="button">-</button>
-					<button type="button">+</button>
-					<button type="button">=</button>
+					<button type="button" class="operator">←</button>
+					<button type="button" class="operator">−</button>
+					<button type="button" class="operator">+</button>
+					<button type="button" class="equalSign">=</button>
 				</div>
 			</div>
 		</div>
