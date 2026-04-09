@@ -130,6 +130,7 @@ function startAction(e) {
 		console.log(currentNum);
 		updateMainDisplay(currentNum);
 	} else if (action === 'equal') {
+		if (operator === '') return;
 		if (currentNum === '' && Number(currentNum) === 0) return;
 		num2 = +currentNum;
 		total = mathOperations[operator](num1, num2);
