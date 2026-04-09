@@ -19,6 +19,9 @@ for (const num of dataNumbers) {
 function updateCurrentNum(e) {
 	let n = e.target.dataset.number;
 	if (currentNum.length >= 16) return;
+	if (total === `Even Batman can't divide by zero.`) {
+		secondDisplay.textContent = '';
+	}
 	total = '';
 	currentNum += n;
 	// if (total) total = '';
@@ -86,14 +89,31 @@ function operate(e) {
 		// currentNum = '';
 		console.log('number 1 :', num1);
 	} else if (num1 !== '' && num2 === '') {
+		if (currentNum === '' && Number(currentNum) === 0) {
+			operator = op;
+			op = operator;
+			secondDisplay.textContent = `${num1} ${operatorSymbol}`;
+			return;
+		}
 		num2 = +currentNum;
 
 		console.log('number 2', num2);
 		// the operator below the one which was stored
 		// by above condition when first number is stored
 		num1 = mathOperations[operator](num1, num2);
-		mainDisplay.textContent = '';
-		secondDisplay.textContent = `${num1} ${operatorSymbol}`;
+		if (num1 === `Even Batman can't divide by zero.`) {
+			secondDisplay.textContent = `Even Batman🦇 can't divide by zero.`;
+			mainDisplay.textContent = 'You 🤡';
+			// num1 = '';
+			// num2 = '';
+			// operator = '';
+			// total = '';
+		} else {
+			// secondDisplay.textContent = `${num1} ${operatorSymbol} ${num2} =`;
+			// updateMainDisplay(total);
+			mainDisplay.textContent = '';
+			secondDisplay.textContent = `${num1} ${operatorSymbol}`;
+		}
 		num2 = '';
 	}
 	operator = op;
@@ -113,7 +133,7 @@ function startAction(e) {
 		console.log(currentNum);
 		updateMainDisplay(currentNum);
 	} else if (action === 'equal') {
-		if (currentNum === '' && Number(currentNum) === 0) return; // TODO fix clicking on equal when there is not number 2
+		if (currentNum === '' && Number(currentNum) === 0) return;
 		num2 = +currentNum;
 		total = mathOperations[operator](num1, num2);
 		if (total === `Even Batman can't divide by zero.`) {
@@ -142,6 +162,7 @@ function startAction(e) {
 	}
 }
 
+function showErrorMsg(result) {}
 for (const op of dataOperators) {
 	op.addEventListener('click', () => {
 		console.log(op.dataset.operator);
