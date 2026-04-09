@@ -79,6 +79,7 @@ function operate(e) {
 	}
 
 	if (num1 === '' && num2 === '') {
+		if (total === '' && currentNum === '' && Number(currentNum) === 0) return;
 		num1 = total ? +total : +currentNum;
 		mainDisplay.textContent = '';
 		secondDisplay.textContent = `${num1} ${operatorSymbol}`;
@@ -155,6 +156,7 @@ function startAction(e) {
 		num1 = '';
 		num2 = '';
 		operator = '';
+		total = '';
 		updateMainDisplay(currentNum);
 		secondDisplay.textContent = ``;
 	}
