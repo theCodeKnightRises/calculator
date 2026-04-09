@@ -11,6 +11,7 @@
 			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Noto+Sans+Math&family=Syne:wght@400..800&display=swap"
 			rel="stylesheet"
 		/>
+		<script src="main.js" defer></script>
 	</head>
 	<body>
 		<div class="container">
@@ -19,31 +20,31 @@
 			<h3 class="display">0123456789</h3>
 			<div class="btns">
 				<div class="row">
-					<button type="button" class="operator">%</button>
-					<button type="button">7</button>
-					<button type="button">4</button>
-					<button type="button">1</button>
-					<button type="button" class="allClear">AC</button>
+					<button type="button" class="operator" data-operator="percent">%</button>
+					<button type="button" data-number="7">7</button>
+					<button type="button" data-number="4">4</button>
+					<button type="button" data-number="1">1</button>
+					<button type="button" class="allClear" data-action="clear">AC</button>
 				</div>
 				<div class="row">
-					<button type="button" class="operator">÷</button>
-					<button type="button">8</button>
-					<button type="button">5</button>
-					<button type="button">2</button>
-					<button type="button">0</button>
+					<button type="button" class="operator" data-operator="divide">÷</button>
+					<button type="button" data-number="8">8</button>
+					<button type="button" data-number="5">5</button>
+					<button type="button" data-number="2">2</button>
+					<button type="button" data-number="0">0</button>
 				</div>
 				<div class="row">
-					<button type="button" class="operator">x</button>
-					<button type="button">9</button>
-					<button type="button">6</button>
-					<button type="button">3</button>
-					<button type="button">.</button>
+					<button type="button" class="operator" data-operator="multiply">x</button>
+					<button type="button" data-number="9">9</button>
+					<button type="button" data-number="6">6</button>
+					<button type="button" data-number="3">3</button>
+					<button type="button" data-number="." class="decimal">.</button>
 				</div>
 				<div class="row">
-					<button type="button" class="operator">←</button>
-					<button type="button" class="operator">−</button>
-					<button type="button" class="operator">+</button>
-					<button type="button" class="equalSign">=</button>
+					<button type="button" class="operator" data-action="delete">←</button>
+					<button type="button" class="operator" data-operator="subtract">−</button>
+					<button type="button" class="operator" data-operator="add">+</button>
+					<button type="button" class="equalSign" data-action="equal">=</button>
 				</div>
 			</div>
 		</div>
