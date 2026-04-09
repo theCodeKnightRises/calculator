@@ -19,9 +19,6 @@ for (const num of dataNumbers) {
 function updateCurrentNum(e) {
 	let n = e.target.dataset.number;
 	if (currentNum.length >= 16) return;
-	if (total === `Even Batman can't divide by zero.`) {
-		secondDisplay.textContent = '';
-	}
 	total = '';
 	currentNum += n;
 	// if (total) total = '';
@@ -104,7 +101,7 @@ function operate(e) {
 		if (num1 === `Even Batman can't divide by zero.`) {
 			secondDisplay.textContent = `Even Batman🦇 can't divide by zero.`;
 			mainDisplay.textContent = 'You 🤡';
-			// num1 = '';
+			num1 = '';
 			// num2 = '';
 			// operator = '';
 			// total = '';
