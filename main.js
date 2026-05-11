@@ -16,8 +16,57 @@ for (const num of dataNumbers) {
 	num.addEventListener('click', updateCurrentNum);
 }
 
-function updateCurrentNum(e) {
-	let n = e.target.dataset.number;
+// keyboard events
+window.addEventListener('keydown', handleKeyboardEvents);
+
+function handleKeyboardEvents(event) {
+	// if (event.defaultPrevented) {
+	// 	return;
+	// }
+
+	const keyName = event.key; // === '.' ? event.key.toString() : Number(event.key);
+	// console.log(event.code);
+	console.log(event.key, typeof event.key, event.code);
+	switch (keyName) {
+		case '0':
+		case '1':
+		case '2':
+		case '3':
+		case '4':
+		case '5':
+		case '6':
+		case '7':
+		case '8':
+		case '9':
+			updateCurrentNum(event, keyName);
+			break;
+		case '/':
+		case '*':
+		case '-':
+		case '+':
+			operate(event, keyName);
+			break;
+	}
+}
+// no need to have separate function for keyboard event
+// function updateCurrentNumKB(keyName) {
+// 	let n = keyName;
+// 	if (currentNum.length >= 16) return;
+// 	total = '';
+// 	currentNum += n;
+// 	// if (total) total = '';
+// 	currentNum.includes('.') ? (decimal.disabled = true) : (decimal.disabled = false);
+// 	// console.log(currentNum, currentNum.length);
+// 	updateMainDisplay(currentNum);
+// }
+
+function updateCurrentNum(event, keyName) {
+	let n;
+	if (event.type === 'click') {
+		n = event.target.dataset.number;
+	} else if (event.type === 'keydown') {
+		n = keyName;
+	}
 	if (currentNum.length >= 16) return;
 	total = '';
 	currentNum += n;
@@ -28,10 +77,12 @@ function updateCurrentNum(e) {
 }
 
 function updateMainDisplay(number) {
-	number = Number(number).toLocaleString();
+	number === '.' ? '.' : Number(number).toLocaleString();
 	mainDisplay.textContent = number;
 	if (mainDisplay.textContent.length > 12) {
 		mainDisplay.style.fontSize = '1.35rem';
+	} else {
+		mainDisplay.style.fontSize = '2.25rem';
 	}
 }
 
@@ -60,8 +111,22 @@ for (const operator of dataOperators) {
 
 let operatorSymbol = '';
 
-function operate(e) {
-	let op = e.target.dataset.operator;
+function operate(event, keyName) {
+	let op;
+
+	if (event.type === 'click') {
+		op = e.target.dataset.operator;
+	} else if (event.type === 'keydown') {
+		if (keyName === '/') {
+			op = 'divide';
+		} else if (keyName === '*') {
+			op = 'multiply';
+		} else if (keyName === '-') {
+			op = 'subtract';
+		} else if (keyName === '+') {
+			op = 'add';
+		}
+	}
 
 	switch (op) {
 		case 'add':
@@ -85,6 +150,7 @@ function operate(e) {
 		secondDisplay.textContent = `${num1} ${operatorSymbol}`;
 		// operator = op;
 		// currentNum = '';
+		decimal.disabled = false;
 		console.log('number 1 :', num1);
 	} else if (num1 !== '' && num2 === '') {
 		if (currentNum === '' && Number(currentNum) === 0) {
@@ -131,6 +197,7 @@ function startAction(e) {
 		console.log(currentNum);
 		updateMainDisplay(currentNum);
 	} else if (action === 'equal') {
+		if (!num1) return;
 		if (operator === '') return;
 		if (currentNum === '' && Number(currentNum) === 0) return;
 		num2 = +currentNum;
