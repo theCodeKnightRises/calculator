@@ -46,6 +46,12 @@ function handleKeyboardEvents(event) {
 		case '+':
 			operate(event, keyName);
 			break;
+		case 'Enter':
+		case 'Backspace':
+		case 'Escape':
+		case 'Delete':
+			startAction(event, keyName);
+			break;
 	}
 }
 // no need to have separate function for keyboard event
@@ -188,8 +194,20 @@ for (const action of dataActions) {
 	action.addEventListener('click', startAction);
 }
 
-function startAction(e) {
-	let action = e.target.dataset.action;
+function startAction(event, keyName) {
+	let action;
+
+	if (event.type === 'click') {
+		action = event.target.dataset.action;
+	} else if (event.type === 'keydown') {
+		if (keyName === 'Backspace') {
+			action = 'delete';
+		} else if (keyName === 'Enter') {
+			action = 'equal';
+		} else if (keyName === 'Escape' || keyName === 'Delete') {
+			action = 'clear';
+		}
+	}
 	if (action === 'delete') {
 		let currentNumCopy = currentNum.split('');
 		currentNumCopy.splice(-1, 1);
