@@ -126,7 +126,7 @@ function operate(event, keyName) {
 	let op;
 
 	if (event.type === 'click') {
-		op = e.target.dataset.operator;
+		op = event.target.dataset.operator;
 	} else if (event.type === 'keydown') {
 		if (keyName === '/') {
 			op = 'divide';
