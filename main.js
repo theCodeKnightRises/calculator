@@ -38,6 +38,7 @@ function handleKeyboardEvents(event) {
 		case '7':
 		case '8':
 		case '9':
+		case '.':
 			updateCurrentNum(event, keyName);
 			break;
 		case '/':
@@ -50,6 +51,7 @@ function handleKeyboardEvents(event) {
 		case 'Backspace':
 		case 'Escape':
 		case 'Delete':
+		case '%':
 			startAction(event, keyName);
 			break;
 	}
@@ -108,6 +110,9 @@ const mathOperations = {
 		} else {
 			return n1 / n2;
 		}
+	},
+	percent(n1, n2) {
+		return n1 * (n2 / 100);
 	},
 };
 
@@ -206,6 +211,8 @@ function startAction(event, keyName) {
 			action = 'equal';
 		} else if (keyName === 'Escape' || keyName === 'Delete') {
 			action = 'clear';
+		} else if (keyName === '%') {
+			action = 'percent';
 		}
 	}
 	if (action === 'delete') {
@@ -214,12 +221,17 @@ function startAction(event, keyName) {
 		currentNum = currentNumCopy.join('');
 		console.log(currentNum);
 		updateMainDisplay(currentNum);
-	} else if (action === 'equal') {
+	} else if (action === 'equal' || action === 'percent') {
 		if (!num1) return;
 		if (operator === '') return;
 		if (currentNum === '' && Number(currentNum) === 0) return;
 		num2 = +currentNum;
-		total = mathOperations[operator](num1, num2);
+		if (action === 'equal') {
+			total = mathOperations[operator](num1, num2);
+		} else if (action === 'percent') {
+			operator = 'percent';
+			total = mathOperations[operator](num1, num2);
+		}
 		if (total === `Even Batman can't divide by zero.`) {
 			secondDisplay.textContent = `Even Batman🦇 can't divide by zero.`;
 			mainDisplay.textContent = 'You 🤡';
@@ -245,12 +257,4 @@ function startAction(event, keyName) {
 		updateMainDisplay(currentNum);
 		secondDisplay.textContent = ``;
 	}
-}
-
-function showErrorMsg(result) {}
-for (const op of dataOperators) {
-	op.addEventListener('click', () => {
-		console.log(op.dataset.operator);
-		// console.log(typeof op.dataset.operator);
-	});
 }
