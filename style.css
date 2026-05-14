@@ -29,7 +29,7 @@ body {
 }
 
 p {
-	margin: 40px 0 50px 40px;
+	margin: 40px 0 40px 40px;
 	font-family: Syne;
 	font-weight: 700;
 	color: #a8ff3d;
@@ -50,7 +50,7 @@ p {
 .btns {
 	display: flex;
 	justify-content: center;
-	padding: 40px;
+	padding: 30px;
 	background: #0c0c1c;
 	border-radius: 20px 20px 10px 10px;
 }
@@ -59,7 +59,7 @@ p {
 	display: flex;
 	flex-direction: column;
 	margin: 10px;
-	gap: 10px;
+	gap: 20px;
 }
 
 button {
@@ -67,7 +67,7 @@ button {
 	width: 55px;
 	border-radius: 50px;
 	border: none;
-	font-family: 'Noto Sans Math', sans-serif;
+	font-family: 'IBM Plex Mono', 'Noto Sans Math', sans-serif;
 	font-size: 18px;
 	background: none;
 	color: #e1e1f2;
@@ -82,7 +82,7 @@ button {
 button:hover {
 	background: #121224;
 	cursor: pointer;
-	font-family: 'Noto Sans Math', sans-serif;
+	font-family: 'IBM Plex Mono', 'Noto Sans Math', sans-serif;
 	font-weight: 400;
 	font-size: 18px;
 	font-style: normal;
