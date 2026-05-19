@@ -110,3 +110,17 @@ button:hover {
 	background: #ff4060;
 	color: #06060f;
 }
+
+span,
+footer {
+	margin-top: 10px;
+	text-align: center;
+	color: #4a4a70;
+	font-size: 12px;
+}
+
+a {
+	text-decoration: none;
+	color: #4a4a70;
+	font-size: 14px;
+}
