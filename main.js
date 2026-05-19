@@ -79,14 +79,14 @@ function updateCurrentNum(event, keyName) {
 	total = '';
 	currentNum += n;
 	// if (total) total = '';
+	currentNum === '.' ? (currentNum = '0.') : (currentNum = currentNum);
 	currentNum.includes('.') ? (decimal.disabled = true) : (decimal.disabled = false);
 	// console.log(currentNum, currentNum.length);
 	updateMainDisplay(currentNum);
 }
 
 function updateMainDisplay(number) {
-	number === '.' ? '.' : Number(number).toLocaleString();
-	mainDisplay.textContent = number;
+	mainDisplay.textContent = Number(number).toLocaleString();
 	if (mainDisplay.textContent.length > 12) {
 		mainDisplay.style.fontSize = '1.35rem';
 	} else {
@@ -222,16 +222,19 @@ function startAction(event, keyName) {
 		console.log(currentNum);
 		updateMainDisplay(currentNum);
 	} else if (action === 'equal' || action === 'percent') {
-		if (!num1) return;
+		if (num1 === '') return;
 		if (operator === '') return;
 		if (currentNum === '' && Number(currentNum) === 0) return;
+
 		num2 = +currentNum;
+
 		if (action === 'equal') {
 			total = mathOperations[operator](num1, num2);
 		} else if (action === 'percent') {
 			operator = 'percent';
 			total = mathOperations[operator](num1, num2);
 		}
+
 		if (total === `Even Batman can't divide by zero.`) {
 			secondDisplay.textContent = `Even Batman🦇 can't divide by zero.`;
 			mainDisplay.textContent = 'You 🤡';
@@ -243,6 +246,7 @@ function startAction(event, keyName) {
 			secondDisplay.textContent = `${num1} ${operatorSymbol} ${num2} =`;
 			updateMainDisplay(total);
 		}
+
 		// num1 = total;
 		num1 = '';
 		num2 = '';
